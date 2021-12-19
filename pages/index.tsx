@@ -1,13 +1,28 @@
-import { Suspense } from "react";
-import { Loader, Sky, PresentationControls } from '@react-three/drei'
+import { Suspense, useRef, useState } from "react";
+import { Loader, Sky, PresentationControls, Plane, useTexture } from '@react-three/drei'
 import { Canvas } from "@react-three/fiber";
 import { Level } from "../components/Level";
 import { Cube } from "../components/Cube";
 import { Pyramid } from "../components/Pyramid";
+import { Camera } from "../components/Camera";
+import { Cactus } from "../components/Cactus";
+import { Dog } from "../components/Dog";
 
 export default function Index() { 
+  const soundRef = useRef(null)
+
+  function playSound() {
+    soundRef.current?.play()
+    soundRef.current.volume = 0.2
+  }
+
   return (
     <>
+      <audio
+        ref={soundRef}
+        src="/dog.mp3"
+      />
+
       <Canvas camera={{ fov: 25, position: [0, 0, 8] }}>
         <Sky />
         <ambientLight />
@@ -17,6 +32,9 @@ export default function Index() {
               <Level />
               <Cube />
               <Pyramid />
+              <Camera />
+              <Cactus />
+              <Dog playSound={playSound} />
             </group>
           </Suspense>
         </PresentationControls>
