@@ -1,5 +1,5 @@
 import { Suspense, useRef, useState } from "react";
-import { Loader, Sky, PresentationControls, Plane, useTexture } from '@react-three/drei'
+import { Loader, Sky, PresentationControls } from '@react-three/drei'
 import { Canvas } from "@react-three/fiber";
 import { Level } from "../components/Level";
 import { Cube } from "../components/Cube";
@@ -7,6 +7,7 @@ import { Pyramid } from "../components/Pyramid";
 import { Camera } from "../components/Camera";
 import { Cactus } from "../components/Cactus";
 import { Dog } from "../components/Dog";
+import { Sphere } from "../components/Sphere";
 
 export default function Index() { 
   const soundRef = useRef(null)
@@ -35,6 +36,7 @@ export default function Index() {
               <Camera />
               <Cactus />
               <Dog playSound={playSound} />
+              <Sphere />
             </group>
           </Suspense>
         </PresentationControls>
